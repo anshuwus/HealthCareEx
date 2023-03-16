@@ -6,11 +6,15 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
 @Entity
 @Table(name="specialization_tab")
+@NoArgsConstructor
+@AllArgsConstructor
 public class Specialization {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -18,9 +22,9 @@ public class Specialization {
 	private Long id;
 	
 	@Column(name="spec_code_col")
-	private String code;
+	private String speccode;
 	
-	@Column(name="spec_note_col")
+	@Column(name="spec_name_col")
 	private String specName;
 	
 	@Column(name="spec_note_col")
