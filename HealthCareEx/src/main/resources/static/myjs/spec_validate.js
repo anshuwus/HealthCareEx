@@ -21,14 +21,27 @@
                 }
                 else if(!exp.test(val)){
                     $("#specCodeError").show();
-                    $("#specCodeError").html("*<b>Code</b> can not be 4-12 characters only")
+                    $("#specCodeError").html("*<b>Code</b> can be 4-12 characters only")
                     $("#specCodeError").css('color','red');
                     specCodeError=false;
                 }
                 else{
-                    $("#specCodeError").hide();
-                    specCodeError=true;
-                }
+                   $.ajax({
+					   url : 'checkCode',
+					   data : {"code":val},
+					   success : function(respTxt){
+						   if(respTxt!=''){
+							    $("#specCodeError").show();
+                                $("#specCodeError").html(respTxt)
+                                $("#specCodeError").css('color','red');
+                                specCodeError=false;
+						   }else{
+							   $("#specCodeError").hide();
+                               specCodeError=true;
+						   }//else
+					   }//function close
+				   });
+                }//else
                 return specCodeError;
             }
 
@@ -48,9 +61,23 @@
                     specNameError=false;
                 }
                 else{
-                    $("#specNameError").hide();
-                    specNameError=true;
-                }
+                    $.ajax({
+						url : 'checkName',
+						data : {"name":val},
+						success : function(respTxt){
+							if(respTxt!=''){
+								 $("#specNameError").show();
+                                $("#specNameError").html(respTxt)
+                                $("#specNameError").css('color','red');
+                                specNameError=false;
+							}//if
+							else{
+								 $("#specNameError").hide();
+                                 specNameError=true;
+							}//else
+						}//function
+					});
+                }//else
                 return specNameError;
             }
 
@@ -80,7 +107,7 @@
 
             //4. link action-event
             $("#specCode").keyup(function(){
-               // $(this).val($(this).val().toUpperCase());
+                $(this).val($(this).val().toUpperCase());
                 validate_specCode();
             });
 
