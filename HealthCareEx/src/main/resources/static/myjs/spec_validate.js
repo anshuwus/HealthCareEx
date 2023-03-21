@@ -26,9 +26,14 @@
                     specCodeError=false;
                 }
                 else{
+					var id=0;  //for register
+					if($("#id").val()!=undefined){ //edit page
+						specCodeError=true;
+						id=$("#id").val();
+					}
                    $.ajax({
 					   url : 'checkCode',
-					   data : {"code":val},
+					   data : {"code":val,"id":id},
 					   success : function(respTxt){
 						   if(respTxt!=''){
 							    $("#specCodeError").show();
@@ -61,9 +66,14 @@
                     specNameError=false;
                 }
                 else{
+					var id=0;  //for register
+					if($("#id").val()!=undefined){  //edit page
+					     specNameError=true;
+					     id=$("#id").val();
+					}
                     $.ajax({
 						url : 'checkName',
-						data : {"name":val},
+						data : {"name":val,"id":id},
 						success : function(respTxt){
 							if(respTxt!=''){
 								 $("#specNameError").show();

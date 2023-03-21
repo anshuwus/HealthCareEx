@@ -104,9 +104,12 @@ public class SpecializationController {
 	   Return messgae back to UI*/
 	@GetMapping("/checkCode")
 	@ResponseBody
-	public String validateSpecCode(@RequestParam String code) {
+	public String validateSpecCode(@RequestParam String code,@RequestParam Long id) {
 		String message=""; // code not exist
-		if(service.isSpecCodeExit(code)) {
+		if(id==0 && service.isSpecCodeExit(code)) {  //for register check
+			message=code+", already exist";
+		}
+		else if(id!=0 && service.isSpecCodeExitForEdit(code, id)) { //for edit check
 			message=code+", already exist";
 		}
 		return message;  //this is not viewName(it's just message)
@@ -116,9 +119,12 @@ public class SpecializationController {
 	   Return message back to UI*/
 	@GetMapping("/checkName")
 	@ResponseBody
-	public String validateSpecName(@RequestParam String name) {
+	public String validateSpecName(@RequestParam String name,@RequestParam Long id) {
 		String message="";  //name not exist
-		if(service.isSpecNameExit(name)) {
+		if(id==0 && service.isSpecNameExit(name)) { //for register check
+			message=name+", already exist";
+		}
+		else if(id!=0 && service.isSpecNameExitForEdit(name, id)) {  //for edit check
 			message=name+", already exist";
 		}
 		return message;

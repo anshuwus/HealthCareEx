@@ -12,5 +12,8 @@ public interface ISpecializationService {
 	public void updateSpecialization(Specialization spec);
 	
 	public boolean isSpecCodeExit(String specCode);
+	public boolean isSpecCodeExitForEdit(String specCode,Long id);
 	public boolean isSpecNameExit(String specName);
+	public boolean isSpecNameExitForEdit(String specName,Long id);
+	
 }

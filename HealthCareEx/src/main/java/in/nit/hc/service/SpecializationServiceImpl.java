@@ -62,4 +62,14 @@ public class SpecializationServiceImpl implements ISpecializationService {
 		return repo.getSpecNameCount(specName)>0;
 	}
 
+	@Override
+	public boolean isSpecCodeExitForEdit(String specCode, Long id) {
+		return repo.getSpecCodeCountForEdit(specCode, id)>0;
+	}
+
+	@Override
+	public boolean isSpecNameExitForEdit(String specName, Long id) {
+		return repo.getSpecNameCountForEdit(specName, id)>0;
+	}
+
 }
