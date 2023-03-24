@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import in.nit.hc.entity.Specialization;
+import in.nit.hc.exception.DoctorNotFoundException;
 import in.nit.hc.exception.SpecializationNotFoundException;
 import in.nit.hc.repository.ISpecializationRepository;
 
@@ -46,7 +47,12 @@ public class SpecializationServiceImpl implements ISpecializationService {
 
 	@Override
 	public void updateSpecialization(Specialization spec) {
-		repo.save(spec);
+		//repo.save(spec);
+		if(repo.existsById(spec.getId())) {
+			repo.save(spec);
+		}else
+			throw new DoctorNotFoundException(spec.getId()+", not exist");
+	
 	}
 
 	@Override
