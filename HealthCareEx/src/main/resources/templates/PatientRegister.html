@@ -16,12 +16,12 @@
   <body>
     <div class="container">
         <div class="card">
-            <div class="card-header bg-primary text-center text-white">
-                <h3>Doctor Register</h3>
+            <div class="card-header bg-primary text-center text-white"> 
+                 <h3>Patient Register</h3>    
             </div>
             <div class="card-body">
-                <form th:action="@{/doctor/save}" method="POST" enctype="multipart/form-data">
-                    <!-- row#1-->
+                <form th:action="@{/patient/save}" method="POST">
+                    <!--row#1-->
                     <div class="row">
                         <div class="col-2">
                             <label for="firstName">First Name</label>
@@ -34,7 +34,7 @@
                         </div>
                     </div>
 
-                     <!-- row#2-->
+                     <!--row#2-->
                      <div class="row">
                         <div class="col-2">
                             <label for="lastName">Last Name</label>
@@ -47,34 +47,22 @@
                         </div>
                     </div>
 
-                     <!-- row#3-->
+                     <!--row#3-->
                      <div class="row">
                         <div class="col-2">
-                            <label for="email">Email</label>
+                            <label for="gender">Gender</label>
                         </div>
                         <div class="col-4">
-                            <input type="text" name="email" id="email" class="form-control">
+                            <input type="radio" name="gender" id="gender1" value="Male"/> Male &nbsp;<br>
+                            <input type="radio" name="gender" id="gender2" value="Female"> Female
                         </div>
                         <div class="col-6">
-                            <span id="emailError"></span>
+                            <span id="genderError"></span>
                         </div>
                     </div>
 
-                    <!-- row#4-->
-                    <div class="row">
-                        <div class="col-2">
-                            <label for="address">Address</label>
-                        </div>
-                        <div class="col-4">
-                            <Textarea name="address" id="address" class="form-control"></Textarea>
-                        </div>
-                        <div class="col-6">
-                            <span id="addressError"></span>
-                        </div>
-                    </div>
-
-                     <!-- row#5-->
-                     <div class="row">
+                      <!--row#4-->
+                      <div class="row">
                         <div class="col-2">
                             <label for="mobile">Mobile</label>
                         </div>
@@ -86,67 +74,69 @@
                         </div>
                     </div>
 
-                    <!-- row#6-->
-                    <div class="row">
+                     <!--row#5-->
+                     <div class="row">
                         <div class="col-2">
-                            <label for="gender">Gender</label>
+                            <label for="maritalStatus">Marital Status</label>
                         </div>
                         <div class="col-4">
-                            <input type="radio" name="gender" id="gender1" value="Male"/> Male &nbsp;
-                            <input type="radio" name="gender" id="gender2" value="Female"/> Female
+                            <input type="radio" name="maritalStatus" id="maritalStatus1" value="Single"/> Single &nbsp;&nbsp;<br>
+                            <input type="radio" name="maritalStatus" id="maritalStatus2" value="Married"/> Married &nbsp;&nbsp;<br>
+                            <input type="radio" name="maritalStatus" id="maritalStatus3" value="Widowed"/> Widowed &nbsp;&nbsp;<br>
+                            <input type="radio" name="maritalStatus" id="maritalStatus4" value="Separated"/> Separated &nbsp;
                         </div>
                         <div class="col-6">
                             <span id="genderError"></span>
                         </div>
                     </div>
 
-                     <!-- row#7-->
+                    <!--row#6-->
+                    <div class="row">
+                        <div class="col-2">
+                            <label for="presentAddress">Present Address</label>
+                        </div>
+                        <div class="col-4">
+                            <textarea type="text" name="presentAddress" id="presentAddress" class="form-control"></textarea> 
+                        </div>
+                        <div class="col-6">
+                            <span id="presentAddressError"></span>
+                        </div>
+                    </div>
+
+                     <!--row#7-->
                      <div class="row">
                         <div class="col-2">
-                            <label for="note">Note</label>
+                            <label for="communicationAddress">Communication Address</label>
                         </div>
                         <div class="col-4">
-                            <Textarea name="note" id="note" class="form-control"></Textarea>
+                            <textarea type="text" name="communicationAddress" id="communicationAddress" class="form-control"></textarea> 
                         </div>
                         <div class="col-6">
-                            <span id="noteError"></span>
+                            <span id="communicationAddressError"></span>
                         </div>
                     </div>
-                    
-                     <!-- row#8-->
-                    <div class="row">
+
+                     <!--row#8-->
+                     <div class="row">
                         <div class="col-2">
-                            <label for="photos">Image</label>
+                            <label for="otherDetails">Other Details</label>
                         </div>
                         <div class="col-4">
-                            <input type="file" name="docImg" id="docImg" accept="image/png,image/jpeg" class="form-control">
+                            <textarea type="text" name="otherDetails" id="otherDetails" class="form-control"></textarea> 
                         </div>
                         <div class="col-6">
-                            <span id="photosError"></span>
+                            <span id="otherDetails"></span>
                         </div>
                     </div>
-                    
-                      <!-- row#9-->
-                    <div class="row">
-                        <div class="col-2">
-                            <label for="imgLoc">ImageLoc</label>
-                        </div>
-                        <div class="col-4">
-                            <input type="text" name="imgLoc" id="imgLoc" class="form-control">
-                        </div>
-                        <div class="col-6">
-                            <span id="imgLocError"></span>
-                        </div>
-                    </div>
-                    
-                    
+
                     <br>
 
                     <button type="submit" class="btn btn-success">Submit <i class="fa fa-plus-square" aria-hidden="true"></i></button>
 
+
                 </form>
             </div>
-             <div th:if="${message!=null}" class="card-footer bg-white text-info">
+            <div class="card-footer bg-white text-info" th:if="${message!=null}">
                 <span th:text="${message}"></span>
             </div>
         </div>

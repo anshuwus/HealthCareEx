@@ -29,7 +29,7 @@ public class DoctorServiceImpl implements IDoctorService {
 	public void removeDoctor(Long id) {
 		repo.delete(getOneDoctor(id));
 	}
-
+	
 	@Override
 	public Doctor getOneDoctor(Long id) {
 		return repo.findById(id).orElseThrow(() -> new DoctorNotFoundException(id+", not exist"));
