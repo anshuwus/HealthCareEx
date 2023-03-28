@@ -35,18 +35,20 @@ public class DoctorController {
 	
 	//2. save on submit
 	@PostMapping("/save")
-	public String save(@ModelAttribute Doctor doctor,RedirectAttributes attributes,@RequestParam("docImg") MultipartFile multipartFile) {
-		String fileName=StringUtils.cleanPath(multipartFile.getOriginalFilename());
-		doctor.setPhotos(fileName);
+	public String save(@ModelAttribute Doctor doctor,RedirectAttributes attributes
+			                            //   ,@RequestParam("docImg") MultipartFile multipartFile
+			                               ) {
+		//String fileName=StringUtils.cleanPath(multipartFile.getOriginalFilename());
+		//doctor.setPhotos(fileName);
 		Long id=service.saveDoctor(doctor);
 		attributes.addAttribute("message", "Doctor ("+id+") is created");
-		String uploadDir="user-photos/"+id;
-		try {
+		//String uploadDir="user-photos/"+id;
+		/*try {
 			FileUploadUtil.saveFile(uploadDir, fileName, multipartFile);
 		}
 		catch(IOException e) {
 			e.printStackTrace();
-		}
+		}*/
 		return"redirect:register";
 	}
 	

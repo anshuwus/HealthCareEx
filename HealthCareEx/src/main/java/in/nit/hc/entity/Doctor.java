@@ -43,19 +43,20 @@ public class Doctor {
 	@Column(name="doc_note_col")
 	private String note;
 	
-	@Column(name="image")
-	private String photos;
+	@Column(name="doc_img_col")
+	private String photoLoc;
 	
-	@Column(name="imgLoc")
-	private String imgLoc;
+	/*	
+	    @Column(name="image")
+	    private String photos;
 	
-	@Transient 
-	private String photosImagePath;
-	
-	public String getPhotosImagePath() {
-		if(photos==null || id==null)
-			return null;
-		else 
-			return "/user-photos/"+id+"/"+photos;
-	}
+	    @Transient 
+		private String photosImagePath;
+		
+		public String getPhotosImagePath() {
+			if(photos==null || id==null)
+				return null;
+			else 
+				return "/user-photos/"+id+"/"+photos;
+		}*/
 }

@@ -12,3 +12,4 @@ public interface IPatientService {
 	public Patient getOnePatient(Long id);
 	public void updatePatient(Patient pat);
 }
+

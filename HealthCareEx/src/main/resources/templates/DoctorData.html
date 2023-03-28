@@ -22,9 +22,9 @@
                 <table class="table table-hover">
                     <tr class="bg-info text-white">
                         <!--<th>ID</th>-->
-                        <th>IMAGE</th>
+                        <th> </th>
                         <th>NAME</th>
-                        <th>EMAIL</th>
+                        <th>EMAIL</th>g
                         <th>MOBILE</th>
                         <th>NOTE</th>
                         <th>ADDRESS</th>
@@ -32,8 +32,8 @@
                     </tr>
                     <tr th:each="ob:${list}">
                         <td>
-                            <img th:src="${ob.photosImagePath}" width="40" height="50"/>
-                            <img th:src="${ob.imgLoc}" width="40" height="50"/>
+                            <img th:src="${ob.photoLoc}" width="40" height="50"/>
+                           <!--  <img th:src="${ob.imgLoc}" width="40" height="50"/> -->
                         </td>
                         <td>[[${ob.firstName+' '+ob.lastName}]]</td>
                         <td th:text="${ob.email}"></td>
