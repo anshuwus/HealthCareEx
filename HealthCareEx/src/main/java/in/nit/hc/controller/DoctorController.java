@@ -1,35 +1,47 @@
 package in.nit.hc.controller;
 
-import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import in.nit.hc.entity.Doctor;
 import in.nit.hc.exception.DoctorNotFoundException;
 import in.nit.hc.service.IDoctorService;
-import in.nit.hc.utility.FileUploadUtil;
+import in.nit.hc.service.ISpecializationService;
 
 @Controller
 @RequestMapping("/doctor")
 public class DoctorController {
 	@Autowired
 	private IDoctorService service;
-	
+	@Autowired
+	private ISpecializationService specializationService;
+
+	/*
+	A common method which sends data to create Dynamic DropDown at UI
+	in Register, Edit page.
+	Call this method inside controller method where those returns
+	____Register or ___Edit
+	*/
+	private void dynamicCommonUI(Model model) {
+		Map<Long,String> specializations=specializationService.getSpecIdAndName();
+		//specializations.forEach((o1,o2) -> System.out.println(o1+" _ "+o2));
+		model.addAttribute("specializations", specializations);
+	}
 	//1. show Regsiter page
 	@GetMapping("/register")
 	public String displayRegister(@RequestParam(value="message",required=false)String message,Model model) {
 		model.addAttribute("message", message);
+		dynamicCommonUI(model);
 		return "DoctorRegister";
 	}
 	
@@ -83,6 +95,7 @@ public class DoctorController {
 		try {
 			Doctor doc=service.getOneDoctor(id);
 			model.addAttribute("doctor", doc);
+			dynamicCommonUI(model);
 			page="DoctorEdit";
 		}
 		catch(DoctorNotFoundException e) {

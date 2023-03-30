@@ -1,7 +1,7 @@
 package in.nit.hc.service;
 
 import java.util.List;
-import java.util.Optional;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -10,6 +10,7 @@ import in.nit.hc.entity.Specialization;
 import in.nit.hc.exception.DoctorNotFoundException;
 import in.nit.hc.exception.SpecializationNotFoundException;
 import in.nit.hc.repository.ISpecializationRepository;
+import in.nit.hc.util.MyCollection;
 
 @Service
 public class SpecializationServiceImpl implements ISpecializationService {
@@ -76,6 +77,13 @@ public class SpecializationServiceImpl implements ISpecializationService {
 	@Override
 	public boolean isSpecNameExitForEdit(String specName, Long id) {
 		return repo.getSpecNameCountForEdit(specName, id)>0;
+	}
+
+	@Override
+	public Map<Long, String> getSpecIdAndName() {
+		List<Object[]> list=repo.getSpecIdAndName();
+		Map<Long,String> map=MyCollection.convertListToMap(list);
+		return map;
 	}
 
 }

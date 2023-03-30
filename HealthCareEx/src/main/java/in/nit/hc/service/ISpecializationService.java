@@ -1,6 +1,7 @@
 package in.nit.hc.service;
 
 import java.util.List;
+import java.util.Map;
 
 import in.nit.hc.entity.Specialization;
 
@@ -16,4 +17,5 @@ public interface ISpecializationService {
 	public boolean isSpecNameExit(String specName);
 	public boolean isSpecNameExitForEdit(String specName,Long id);
 	
+	public Map<Long,String> getSpecIdAndName();
 }
