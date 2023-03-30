@@ -47,6 +47,7 @@ public class Doctor {
 	private String photoLoc;
 	
 	/*	
+	 *image concept
 	    @Column(name="image")
 	    private String photos;
 	
