@@ -140,7 +140,8 @@
                             <label for="photoLoc">Image</label>
                         </div>
                         <div class="col-4">
-                            <input type="text" name="photoLoc" id="photoLoc" accept="image/png,image/jpeg" class="form-control">
+                            <input type="file" name="fileOb" id="fileOb" class="form-control" onchange="uploadFile()">
+                            <input type="text" id="photoLoc" name="photoLoc" class="form-control"/>
                         </div>
                         <div class="col-6">
                             <span id="photoLocError"></span>
@@ -172,5 +173,8 @@
             </div>
         </div>
     </div>
+    
+    <script th:src="@{/myjs/uploadImgBb.js}"></script>
+    
 </body>
 </html>
