@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,6 +18,7 @@ import in.nit.hc.entity.Doctor;
 import in.nit.hc.exception.DoctorNotFoundException;
 import in.nit.hc.service.IDoctorService;
 import in.nit.hc.service.ISpecializationService;
+import in.nit.hc.util.MyMailUtil;
 
 @Controller
 @RequestMapping("/doctor")
@@ -25,6 +27,8 @@ public class DoctorController {
 	private IDoctorService service;
 	@Autowired
 	private ISpecializationService specializationService;
+	@Autowired
+	private MyMailUtil mailUtil;
 
 	/*
 	A common method which sends data to create Dynamic DropDown at UI
@@ -37,6 +41,7 @@ public class DoctorController {
 		//specializations.forEach((o1,o2) -> System.out.println(o1+" _ "+o2));
 		model.addAttribute("specializations", specializations);
 	}
+	
 	//1. show Regsiter page
 	@GetMapping("/register")
 	public String displayRegister(@RequestParam(value="message",required=false)String message,Model model) {
@@ -53,7 +58,16 @@ public class DoctorController {
 		//String fileName=StringUtils.cleanPath(multipartFile.getOriginalFilename());
 		//doctor.setPhotos(fileName);
 		Long id=service.saveDoctor(doctor);
-		attributes.addAttribute("message", "Doctor ("+id+") is created");
+		String messgae= "Doctor ("+id+") is created";
+		attributes.addAttribute("message", messgae);
+		if(id!=null) {
+			mailUtil.send(
+					doctor.getEmail(),
+					"SUCCESS",
+					messgae,
+					new ClassPathResource("/static/myres/FDD.pdf"));
+		}//if
+		
 		//String uploadDir="user-photos/"+id;
 		/*try {
 			FileUploadUtil.saveFile(uploadDir, fileName, multipartFile);
