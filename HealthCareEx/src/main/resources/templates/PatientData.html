@@ -27,7 +27,7 @@
                         <th>MOBILE</th>
                         <th>PRESENT ADDRESS</th>
                         <th>COMMUNICATION ADDRESS</th>
-                        <th>OTHER DETAILS</th>
+                        <th>NOTE</th>
                         <th>OPERATION</th>
                     </tr>
                                    
@@ -37,9 +37,9 @@
                         <td>[[${ob.firstName+' '+ob.lastName}]]</td>
                         <td th:text="${ob.gender}"></td>
                         <td th:text="${ob.mobile}"></td>
-                        <td th:text="${ob.presentAddress}"></td>
-                        <td th:text="${ob.communicationAddress}"></td>
-                        <td th:text="${ob.otherDetails}"></td>
+                        <td th:text="${ob.presentAddr}"></td>
+                        <td th:text="${ob.commAdr}"></td>
+                        <td th:text="${ob.note}"></td>
                         <td>
                             <a th:href="@{/patient/delete(id=${ob.id})}" class="btn btn-danger">DELETE  <i class="fa fa-trash" aria-hidden="true"></i></a>
                             <a th:href="@{/patient/edit(id=${ob.id})}" class="btn btn-warning">EDIT  <i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>

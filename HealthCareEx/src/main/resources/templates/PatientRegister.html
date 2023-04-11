@@ -53,8 +53,11 @@
                             <label for="gender">Gender</label>
                         </div>
                         <div class="col-4">
-                            <input type="radio" name="gender" id="gender1" value="Male"/> Male &nbsp;<br>
-                            <input type="radio" name="gender" id="gender2" value="Female"> Female
+                             <select name="gender" id="gender" class="form-control">
+                                <option value="Male">Male</option>
+                                <option value="Female">Female</option>
+                                <option value="other">Other</option>
+                             </select>   
                         </div>
                         <div class="col-6">
                             <span id="genderError"></span>
@@ -64,7 +67,7 @@
                       <!--row#4-->
                       <div class="row">
                         <div class="col-2">
-                            <label for="mobile">Mobile</label>
+                            <label for="mobile">Phone</label>
                         </div>
                         <div class="col-4">
                             <input type="text" name="mobile" id="mobile" class="form-control">
@@ -77,57 +80,102 @@
                      <!--row#5-->
                      <div class="row">
                         <div class="col-2">
-                            <label for="maritalStatus">Marital Status</label>
+                            <label for="dateOfBirth">Date Of Birth</label>
                         </div>
                         <div class="col-4">
-                            <input type="radio" name="maritalStatus" id="maritalStatus1" value="Single"/> Single &nbsp;&nbsp;<br>
-                            <input type="radio" name="maritalStatus" id="maritalStatus2" value="Married"/> Married &nbsp;&nbsp;<br>
-                            <input type="radio" name="maritalStatus" id="maritalStatus3" value="Widowed"/> Widowed &nbsp;&nbsp;<br>
-                            <input type="radio" name="maritalStatus" id="maritalStatus4" value="Separated"/> Separated &nbsp;
+                            <input type="date" name="dateOfBirth" id="dateOfBirth" class="form-control">
                         </div>
                         <div class="col-6">
-                            <span id="genderError"></span>
+                            <span id="dateOfBirthError"></span>
                         </div>
                     </div>
 
-                    <!--row#6-->
-                    <div class="row">
-                        <div class="col-2">
-                            <label for="presentAddress">Present Address</label>
-                        </div>
-                        <div class="col-4">
-                            <textarea type="text" name="presentAddress" id="presentAddress" class="form-control"></textarea> 
-                        </div>
-                        <div class="col-6">
-                            <span id="presentAddressError"></span>
-                        </div>
-                    </div>
-
-                     <!--row#7-->
+                     <!--row#6-->
                      <div class="row">
                         <div class="col-2">
-                            <label for="communicationAddress">Communication Address</label>
+                            <label for="marialStatus">Marital Status</label>
+                        </div>
+                        <div class="col-5">
+                            <input type="radio" name="marialStatus" id="marialStatus1" value="Married"/>Married
+                            <input type="radio" name="marialStatus" id="marialStatus2" value="Unmarried"/>Unmarried
+                            <input type="radio" name="marialStatus" id="marialStatus3" value="Widowed"/>Widowed
+                            <input type="radio" name="marialStatus" id="marialStatus4" value="Separated"/>Separated
+                        </div>
+                        <div class="col-5">
+                            <span id="marialStatusError"></span>
+                        </div>
+                    </div>
+
+                    <!--row#7-->
+                    <div class="row">
+                        <div class="col-2">
+                            <label for="presentAddr">Present Address</label>
                         </div>
                         <div class="col-4">
-                            <textarea type="text" name="communicationAddress" id="communicationAddress" class="form-control"></textarea> 
+                            <textarea type="text" name="presentAddr" id="presentAddr" class="form-control"></textarea> 
                         </div>
                         <div class="col-6">
-                            <span id="communicationAddressError"></span>
+                            <span id="presentAddrError"></span>
                         </div>
                     </div>
 
                      <!--row#8-->
                      <div class="row">
                         <div class="col-2">
-                            <label for="otherDetails">Other Details</label>
+                            <label for="commAdr">Communication Address</label>
                         </div>
                         <div class="col-4">
-                            <textarea type="text" name="otherDetails" id="otherDetails" class="form-control"></textarea> 
+                            <textarea type="text" name="commAdr" id="commAdr" class="form-control"></textarea> 
                         </div>
                         <div class="col-6">
-                            <span id="otherDetails"></span>
+                            <span id="commAdrError"></span>
                         </div>
                     </div>
+
+                    <!--row#9-->
+                     <div class="row">
+                        <div class="col-2">
+                            <label for="mediHistory">Medical History</label>
+                        </div>
+                        <div class="col-4">
+                            <input type="checkbox" name="mediHistory" id="mediHistory1" value="Ulcer"/>Ulcer
+                            <input type="checkbox" name="mediHistory" id="mediHistory2" value="Caner"/>Cancer
+                            <input type="checkbox" name="mediHistory" id="mediHistory3" value="BP"/>BP
+                            <input type="checkbox" name="mediHistory" id="mediHistory4" value="Sugra"/>Sugra
+
+                        </div>
+                        <div class="col-6">
+                            <span id="mediHistoryError"></span>
+                        </div>
+                    </div>
+
+                     <!--row#10-->
+                     <div class="row">
+                        <div class="col-2">
+                            <label for="ifOther">If Other History</label>
+                            <input type="checkbox" name="mediHistory" id="mediHistory5" value="ifOther">
+
+                        </div>
+                        <div class="col-4">
+                            <input type="text" name="ifOther" id="ifOther" class="form-control" readonly>
+                        </div>
+                        <div class="col-6">
+                            <span id="ifOther"></span>
+                        </div>
+                    </div>
+
+                       <!--row#11-->
+                       <div class="row">
+                        <div class="col-2">
+                            <label for="note">Note</label>
+                        </div>
+                        <div class="col-4">
+                            <textarea  name="note" id="note" class="form-control"></textarea>
+                        </div>
+                        <div class="col-6">
+                            <span id="noteError"></span>
+                        </div>
+
 
                     <br>
 

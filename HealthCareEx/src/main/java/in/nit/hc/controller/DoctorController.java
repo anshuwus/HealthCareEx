@@ -58,14 +58,31 @@ public class DoctorController {
 		//String fileName=StringUtils.cleanPath(multipartFile.getOriginalFilename());
 		//doctor.setPhotos(fileName);
 		Long id=service.saveDoctor(doctor);
-		String messgae= "Doctor ("+id+") is created";
-		attributes.addAttribute("message", messgae);
+		String message= "Doctor ("+id+") is created";
+		attributes.addAttribute("message", message);
 		if(id!=null) {
-			mailUtil.send(
-					doctor.getEmail(),
-					"SUCCESS",
-					messgae,
-					new ClassPathResource("/static/myres/FDD.pdf"));
+			/*
+			//before JDK 1.7
+			new Thread(new Runnable() {
+				public void run() {
+					mailUtil.send(
+							doctor.getEmail(),
+							"SUCCESS",
+							message,
+							new ClassPathResource("/static/myres/FDD.pdf"));
+				
+				}
+			}).start();
+			*/
+			//JDK 1.8
+			new Thread(() -> {
+				mailUtil.send(
+						doctor.getEmail(),
+						"SUCCESS",
+						message,
+						new ClassPathResource("/static/myres/FDD.pdf"));
+			
+			}).start();
 		}//if
 		
 		//String uploadDir="user-photos/"+id;

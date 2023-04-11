@@ -61,14 +61,17 @@
                         </div>
                     </div>
 
-                     <!--row#3-->
+                    <!--row#3-->
                      <div class="row">
                         <div class="col-2">
                             <label for="gender">Gender</label>
                         </div>
                         <div class="col-4">
-                            <input type="radio" th:field="*{gender}" value="Male"/> Male &nbsp;<br>
-                            <input type="radio" th:field="*{gender}" value="Female"> Female
+                             <select name="gender" th:field="*{gender}" class="form-control">
+                                <option value="Male">Male</option>
+                                <option value="Female">Female</option>
+                                <option value="other">Other</option>
+                             </select>   
                         </div>
                         <div class="col-6">
                             <span id="genderError"></span>
@@ -78,7 +81,7 @@
                       <!--row#4-->
                       <div class="row">
                         <div class="col-2">
-                            <label for="mobile">Mobile</label>
+                            <label for="mobile">Phone</label>
                         </div>
                         <div class="col-4">
                             <input type="text" th:field="*{mobile}" class="form-control">
@@ -88,60 +91,105 @@
                         </div>
                     </div>
 
-                     <!--row#5-->
+                    <!--row#5-->
                      <div class="row">
                         <div class="col-2">
-                            <label for="maritalStatus">Marital Status</label>
+                            <label for="dateOfBirth">Date Of Birth</label>
                         </div>
                         <div class="col-4">
-                            <input type="radio" th:field="*{maritalStatus}" value="Single"/> Single &nbsp;&nbsp;<br>
-                            <input type="radio" th:field="*{maritalStatus}" value="Married"/> Married &nbsp;&nbsp;<br>
-                            <input type="radio" th:field="*{maritalStatus}" value="Widowed"/> Widowed &nbsp;&nbsp;<br>
-                            <input type="radio" th:field="*{maritalStatus}" value="Separated"/> Separated &nbsp;
+                            <input type="date" th:field="*{dateOfBirth}" class="form-control">
                         </div>
                         <div class="col-6">
-                            <span id="genderError"></span>
+                            <span id="dateOfBirthError"></span>
                         </div>
                     </div>
 
-                    <!--row#6-->
+                   <!--row#6-->
+                     <div class="row">
+                        <div class="col-2">
+                            <label for="marialStatus">Marital Status</label>
+                        </div>
+                        <div class="col-5">
+                            <input type="radio" th:field="*{marialStatus}" value="Married"/>Married
+                            <input type="radio" th:field="*{marialStatus}" value="Unmarried"/>Unmarried
+                            <input type="radio" th:field="*{marialStatus}" value="Widowed"/>Widowed
+                            <input type="radio" th:field="*{marialStatus}" value="Separated"/>Separated
+                        </div>
+                        <div class="col-5">
+                            <span id="marialStatusError"></span>
+                        </div>
+                      </div>
+
+                       <!--row#7-->
                     <div class="row">
                         <div class="col-2">
-                            <label for="presentAddress">Present Address</label>
+                            <label for="presentAddr">Present Address</label>
                         </div>
                         <div class="col-4">
-                            <textarea type="text" th:field="*{presentAddress}" class="form-control"></textarea> 
+                            <textarea th:field="*{presentAddr}" class="form-control"></textarea> 
                         </div>
                         <div class="col-6">
-                            <span id="presentAddressError"></span>
-                        </div>
-                    </div>
-
-                     <!--row#7-->
-                     <div class="row">
-                        <div class="col-2">
-                            <label for="communicationAddress">Communication Address</label>
-                        </div>
-                        <div class="col-4">
-                            <textarea type="text" th:field="*{communicationAddress}" class="form-control"></textarea> 
-                        </div>
-                        <div class="col-6">
-                            <span id="communicationAddressError"></span>
+                            <span id="presentAddrError"></span>
                         </div>
                     </div>
 
                      <!--row#8-->
                      <div class="row">
                         <div class="col-2">
-                            <label for="otherDetails">Other Details</label>
+                            <label for="commAdr">Communication Address</label>
                         </div>
                         <div class="col-4">
-                            <textarea type="text" th:field="*{otherDetails}" class="form-control"></textarea> 
+                            <textarea th:field="*{commAdr}" class="form-control"></textarea> 
                         </div>
                         <div class="col-6">
-                            <span id="otherDetails"></span>
+                            <span id="commAdrError"></span>
                         </div>
                     </div>
+                    
+                     <!--row#9-->
+                     <div class="row">
+                        <div class="col-2">
+                            <label for="mediHistory">Medical History</label>
+                        </div>
+                        <div class="col-4">
+                            <input type="checkbox" th:field="*{mediHistory}" value="Ulcer"/>Ulcer
+                            <input type="checkbox" th:field="*{mediHistory}" value="Caner"/>Cancer
+                            <input type="checkbox" th:field="*{mediHistory}" value="BP"/>BP
+                            <input type="checkbox" th:field="*{mediHistory}" value="Sugra"/>Sugra
+
+                        </div>
+                        <div class="col-6">
+                            <span id="mediHistoryError"></span>
+                        </div>
+                    </div>
+                    
+                      <!--row#10-->
+                     <div class="row">
+                        <div class="col-2">
+                            <label for="ifOther">If Other History</label>
+                            <input type="checkbox" th:field="*{mediHistory}" value="ifOther">
+
+                        </div>
+                        <div class="col-4">
+                            <input type="text" th:field="*{ifOther}" class="form-control" readonly>
+                        </div>
+                        <div class="col-6">
+                            <span id="ifOther"></span>
+                        </div>
+                    </div>
+                    
+                     <!--row#11-->
+                       <div class="row">
+                           <div class="col-2">
+                               <label for="note">Note</label>
+                           </div>
+                           <div class="col-4">
+                               <textarea  th:field="*{note}" class="form-control"></textarea>
+                           </div>
+                           <div class="col-6">
+                               <span id="noteError"></span>
+                           </div>
+                       </div>
 
 
                     <button type="submit" class="btn btn-success">Update <i class="fa fa-plus-square" aria-hidden="true"></i></button>
@@ -150,7 +198,7 @@
 
                 </form>
             </div>
-            <div class="card-header"></div>
+            <div class="card-body"></div>
         </div>
     </div>
 </body>

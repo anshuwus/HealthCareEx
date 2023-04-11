@@ -1,5 +1,6 @@
 package in.nit.hc.entity;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -48,7 +49,7 @@ public class Doctor {
 	private String photoLoc;
 	
 	//------Association mapping--------
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.MERGE)
 	@JoinColumn(name="spec_id_fk_col")
 	private Specialization specialization;
 	
