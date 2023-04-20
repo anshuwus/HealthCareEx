@@ -44,7 +44,7 @@ public class Patient {
 	private Long mobile;
 	
 	@DateTimeFormat(iso=ISO.DATE)
-	//@Temporal(TemporalType.DATE)
+	@Temporal(TemporalType.DATE)
 	@Column(name="pat_dob_col")
 	private Date dateOfBirth;
 	

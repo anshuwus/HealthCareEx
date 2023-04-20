@@ -1,6 +1,7 @@
 package in.nit.hc.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -8,6 +9,7 @@ import org.springframework.stereotype.Service;
 import in.nit.hc.entity.Doctor;
 import in.nit.hc.exception.DoctorNotFoundException;
 import in.nit.hc.repository.IDoctorRepository;
+import in.nit.hc.util.MyCollection;
 
 @Service
 public class DoctorServiceImpl implements IDoctorService {
@@ -41,6 +43,13 @@ public class DoctorServiceImpl implements IDoctorService {
 			repo.save(doc);
 		}else
 			throw new DoctorNotFoundException(doc.getId()+", not exist");
+	}
+
+	@Override
+	public Map<Long,String> getDocIdAndName() {
+		List<Object[]> list=repo.getDocIdAndName();
+		Map<Long,String> map=MyCollection.convertListToMap2(list);
+		return map;
 	}
 
 }

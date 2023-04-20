@@ -26,8 +26,7 @@
                         <th>GENDER</th>
                         <th>MOBILE</th>
                         <th>PRESENT ADDRESS</th>
-                        <th>COMMUNICATION ADDRESS</th>
-                        <th>NOTE</th>
+                        <th>MEDICAL HISTORY</th>
                         <th>OPERATION</th>
                     </tr>
                                    
@@ -38,8 +37,7 @@
                         <td th:text="${ob.gender}"></td>
                         <td th:text="${ob.mobile}"></td>
                         <td th:text="${ob.presentAddr}"></td>
-                        <td th:text="${ob.commAdr}"></td>
-                        <td th:text="${ob.note}"></td>
+                        <td>[[${ob.mediHistory +"-"+ob.ifOther}]]</td>
                         <td>
                             <a th:href="@{/patient/delete(id=${ob.id})}" class="btn btn-danger">DELETE  <i class="fa fa-trash" aria-hidden="true"></i></a>
                             <a th:href="@{/patient/edit(id=${ob.id})}" class="btn btn-warning">EDIT  <i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
