@@ -40,6 +40,9 @@ public class Patient {
 	@Column(name="pat_gen_col",length=10)
 	private String gender;
 	
+	@Column(name="pat_email_col", length=50)
+	private String email;
+	
 	@Column(name="pat_mob_col")
 	private Long mobile;
 	
