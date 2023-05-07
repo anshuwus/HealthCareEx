@@ -12,6 +12,7 @@ import in.nit.hc.entity.User;
 import in.nit.hc.exception.DoctorNotFoundException;
 import in.nit.hc.repository.IDoctorRepository;
 import in.nit.hc.util.MyCollection;
+import in.nit.hc.util.MyMailUtil;
 import in.nit.hc.util.UserUtil;
 
 @Service
@@ -23,18 +24,31 @@ public class DoctorServiceImpl implements IDoctorService {
 	private IUserService userService;
 	@Autowired
 	private UserUtil util;
+	@Autowired
+	private MyMailUtil mailUtil;
 	
 	@Override
 	public Long saveDoctor(Doctor doc) {
 		Long id = repo.save(doc).getId();
 		if(id!=null) {
 			User user=new User();
+			String pwd = util.genPwd();
 			user.setDisplayName(doc.getFirstName()+" "+doc.getLastName());
 			user.setUsername(doc.getEmail());
-			user.setPassword(util.genPwd());
+			user.setPassword(pwd);
 			user.setRole(UserRoles.DOCTOR.name());
-			userService.saveUser(user);
-			//TODO : Email part is pending
+			Long genId = userService.saveUser(user);
+			//sending Email to doctor
+			if(genId!=null) {
+				new Thread(new Runnable() {
+					
+					@Override
+					public void run() {
+						String text = "Your name is "+doc.getEmail()+", password is "+pwd;
+						mailUtil.send(doc.getEmail(), "DOCTOR ADDED", text);
+					}
+				}).start();
+			}
 		}
 		return id;
 	}

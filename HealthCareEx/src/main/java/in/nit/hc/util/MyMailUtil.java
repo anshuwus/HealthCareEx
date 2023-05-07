@@ -35,6 +35,7 @@ public class MyMailUtil {
 				helper.setBcc(bcc);
 			helper.setSubject(subject);
 			helper.setText(text);
+			
 			if (files != null) {
 				for (Resource rob : files) {
 					helper.addAttachment(rob.getFilename(), rob);

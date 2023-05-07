@@ -10,6 +10,7 @@ import in.nit.hc.entity.Patient;
 import in.nit.hc.entity.User;
 import in.nit.hc.exception.PatientNotFoundException;
 import in.nit.hc.repository.IPatientRepository;
+import in.nit.hc.util.MyMailUtil;
 import in.nit.hc.util.UserUtil;
 
 @Service
@@ -21,18 +22,30 @@ public class PatientServiceImpl implements IPatientService {
 	private IUserService userService;
 	@Autowired
 	private UserUtil util;
-	
+	@Autowired
+	private MyMailUtil mailUtil;
 	@Override
 	public Long savePatient(Patient pat) {
 		Long id = repo.save(pat).getId();
 		if(id!=null) {
+			String pwd = util.genPwd();
 			User user=new User();
 			user.setDisplayName(pat.getFirstName()+" "+pat.getLastName());
 			user.setUsername(pat.getEmail());
-			user.setPassword(util.genPwd());
+			user.setPassword(pwd);
 			user.setRole(UserRoles.PATIENT.name());
-			userService.saveUser(user);
-			//TODO : Email part is pending
+			Long genId = userService.saveUser(user);
+			//send Email to registered patient
+			if(genId!=null) {
+				new Thread(new Runnable() {
+					
+					@Override
+					public void run() {
+						String text = "Your name is "+pat.getEmail()+", password is "+pwd;
+						mailUtil.send(pat.getEmail(), "PATIENT ADDED", text);
+					}
+				}).start();
+			}
 		}
 		return id;
 	}
