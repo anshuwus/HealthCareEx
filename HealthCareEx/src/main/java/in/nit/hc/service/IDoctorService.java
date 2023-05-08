@@ -12,7 +12,8 @@ public interface IDoctorService {
 	public void removeDoctor(Long id);
 	public Doctor getOneDoctor(Long id);
 	public void updateDoctor(Doctor doc);
-	//for dynamic dropdown
+	//for dynamic dropdown integration
 	public Map<Long,String> getDocIdAndName();
+	public List<Doctor> findDoctorBySpecId(Long id);
 
 }

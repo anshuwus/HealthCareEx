@@ -49,6 +49,7 @@ public class Doctor {
 	private String photoLoc;
 	
 	//------Association mapping--------
+	//Many doctor will have one specialization and one specialization is belong to many doctors
 	@ManyToOne(cascade = CascadeType.MERGE)
 	@JoinColumn(name="spec_id_fk_col")
 	private Specialization specialization;

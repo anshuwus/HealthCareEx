@@ -14,9 +14,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import in.nit.hc.entity.Appointment;
+import in.nit.hc.entity.Doctor;
 import in.nit.hc.exception.AppointmentNotFoundException;
 import in.nit.hc.service.IAppointmentService;
 import in.nit.hc.service.IDoctorService;
+import in.nit.hc.service.ISpecializationService;
 
 @Controller
 @RequestMapping("/appointment")
@@ -25,6 +27,9 @@ public class AppointmentController {
 	private IAppointmentService service;
 	@Autowired
 	private IDoctorService docService;
+	@Autowired
+	private ISpecializationService specService;
+	
 	/*
 	A common method which sends data to create Dynamic Dropdown at UI
 	in Register, Edit page.
@@ -110,4 +115,31 @@ public class AppointmentController {
 	//7. email and mobile duplicate validation(AJAX)
 	
 	//8. excel export
+	
+	//9. search result view appointments page..
+	@GetMapping("/view")
+	public String viewSlots(@RequestParam(required = false,defaultValue = "0")Long specId,Model model) {
+		//fetch data for Spec DropDown
+		Map<Long, String> specMap = specService.getSpecIdAndName();
+		model.addAttribute("specializations", specMap);
+		List<Doctor> docList=null;
+		String message=null;
+		if(specId==0) {//if they did not select any spec
+			docList = docService.getAllDoctors();
+			message="Result : All Doctors";
+		}else {
+			docList = docService.findDoctorBySpecId(specId);
+			message="Result : "+specService.getOneSpecialization(specId).getSpecName();
+		}
+		model.addAttribute("docList", docList);
+		model.addAttribute("message", message);
+		return "AppointmentSearch";
+		
+	}
+	
+	
+	
+	
+	
+	
 }

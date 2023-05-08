@@ -29,8 +29,9 @@
 
 			
 			<!-- Specialization start -->
-			<li class="nav-item dropdown" sec:authorize="hasAuthority('ADMIN')"><a
-				class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
+<!-- 			<li class="nav-item dropdown" sec:authorize="hasAuthority('ADMIN')"> -->
+			<li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
 				role="button" data-toggle="dropdown" aria-haspopup="true"
 				aria-expanded="false"> Specialization </a>
 				<div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -40,8 +41,9 @@
 			<!-- Specialization end -->
 
 			<!-- Doctor start -->
-			<li class="nav-item dropdown" sec:authorize="hasAuthority('ADMIN')"><a
-				class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
+			<!-- <li class="nav-item dropdown" sec:authorize="hasAuthority('ADMIN')">  -->
+			<li class="nav-item dropdown">
+		     	<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
 				role="button" data-toggle="dropdown" aria-haspopup="true"
 				aria-expanded="false"> Doctor </a>
 				<div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -62,13 +64,16 @@
 			<!-- Patient end -->
 			
 			<!-- Appointment start -->
-			<li class="nav-item dropdown" sec:authorize="hasAuthority('ADMIN')"><a
-				class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
+			<!-- <li class="nav-item dropdown" sec:authorize="hasAuthority('ADMIN')">  -->
+			<li class="nav-item dropdown"> 
+			<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
 				role="button" data-toggle="dropdown" aria-haspopup="true"
 				aria-expanded="false"> Appointment </a>
 				<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-					<a class="dropdown-item" th:href="@{/appointment/register}">Add</a> <a
-						class="dropdown-item" th:href="@{/appointment/all}">View All</a>
+					<a class="dropdown-item" th:href="@{/appointment/register}">Add</a> 
+					<a class="dropdown-item" th:href="@{/appointment/all}">View All</a>
+					<a class="dropdown-item" th:href="@{/appointment/view}">Book</a>
+					
 				</div></li>
 			<!-- Patient end -->
 			

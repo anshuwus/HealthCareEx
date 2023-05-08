@@ -16,6 +16,6 @@ public interface ISpecializationService {
 	public boolean isSpecCodeExitForEdit(String specCode,Long id);
 	public boolean isSpecNameExit(String specName);
 	public boolean isSpecNameExitForEdit(String specName,Long id);
-	
+	//for dynamic dropdown integration
 	public Map<Long,String> getSpecIdAndName();
 }

@@ -83,4 +83,10 @@ public class DoctorServiceImpl implements IDoctorService {
 		return map;
 	}
 
+	@Override
+	public List<Doctor> findDoctorBySpecId(Long id) {
+		// TODO Auto-generated method stub
+		return repo.findDoctorBySpecId(id);
+	}
+
 }
